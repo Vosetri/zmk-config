@@ -7,22 +7,12 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 // Custom Behaviors
 
 / {
     behaviors {
-        bspc_del: backspace_delete {
-            compatible = "zmk,behavior-mod-morph";
-            label = "BACKSPACE_DELETE";
-            #binding-cells = <0>;
-            bindings =
-                <&kp BSPC>,
-                <&kp DEL>;
-
-            mods = <(MOD_LALT)>;
-        };
-        
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
@@ -34,7 +24,44 @@
                 <&kp>,
                 <&kp>;
 
-            };
+            ;
+        };
+    };
+};
+
+// Combos
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_CMD_UP {
+            timeout-ms = <50>;
+            key-positions = <22 3>;
+            bindings = <&kp LG(UP)>;
+            layers = <0>;
+        };
+
+        combo_CMD_RIGHT {
+            timeout-ms = <50>;
+            key-positions = <22 16>;
+            bindings = <&kp LG(RIGHT)>;
+            layers = <0>;
+        };
+
+        combo_CMD_LEFT {
+            timeout-ms = <50>;
+            key-positions = <22 14>;
+            bindings = <&kp LG(LEFT)>;
+            layers = <0>;
+        };
+
+        combo_CMD_DOWN {
+            timeout-ms = <50>;
+            key-positions = <22 15>;
+            bindings = <&kp LG(DOWN)>;
+            layers = <0>;
+        };
     };
 };
 
@@ -52,10 +79,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp TAB  &kp Q  &kp W           &kp E  &kp R      &kp T      &kp Y       &kp U      &kp I    &kp O     &kp P  &bspc_del
-&kp LCTRL  &kp A  &kp S           &kp D  &kp F      &kp G      &kp H  &hm LGUI J      &kp K    &kp L  &kp SEMI    &kp SQT
- &kp LGUI  &kp Z  &kp X           &kp C  &kp V      &kp B      &kp N       &kp M  &kp COMMA  &kp DOT  &kp FSLH    &kp ESC
-                         &kp LEFT_SHIFT  &mo 1  &kp SPACE    &kp RET       &mo 2   &kp RALT
+  &kp TAB  &kp Q  &kp W           &kp E  &kp R      &kp T      &kp Y  &kp U      &kp I    &kp O               &kp P  &kp BACKSPACE
+&kp LCTRL  &kp A  &kp S           &kp D  &kp F      &kp G      &kp H  &kp J      &kp K    &kp L  &hm LGUI SEMICOLON        &kp SQT
+ &kp LGUI  &kp Z  &kp X           &kp C  &kp V      &kp B      &kp N  &kp M  &kp COMMA  &kp DOT            &kp FSLH        &kp ESC
+                         &kp LEFT_SHIFT  &mo 1  &kp SPACE    &kp RET  &mo 2   &kp RALT
             >;
 
             label = "DEF";
@@ -69,9 +96,9 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp TAB  &none     &none  &kp UP_ARROW      &none      &none       &kp SLASH    &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8              &kp N9   &kp MINUS  &bspc_del
-&kp LCTRL  &none  &kp DOWN      &kp DOWN  &kp RIGHT      &none    &kp ASTERISK       &mt DOLLAR NUMBER_4   &mt PERCENT NUMBER_5  &mt CARET NUMBER_6   &kp EQUAL      &none
- &kp LGUI  &none     &none         &none      &none      &none          &kp N0  &mt EXCLAMATION NUMBER_1   &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3  &kp PERIOD      &none
+  &kp TAB  &none     &none  &kp UP_ARROW      &none      &none       &kp SLASH    &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8              &kp N9   &kp MINUS  &kp DELETE
+&kp LCTRL  &none  &kp LEFT      &kp DOWN  &kp RIGHT      &none    &kp ASTERISK       &mt DOLLAR NUMBER_4   &mt PERCENT NUMBER_5  &mt CARET NUMBER_6   &kp EQUAL       &none
+ &kp LGUI  &none     &none         &none      &none      &none          &kp N0  &mt EXCLAMATION NUMBER_1   &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3  &kp PERIOD       &none
                                &kp LSHFT     &trans  &kp SPACE         &kp RET                    &trans               &kp RALT
             >;
 
@@ -86,9 +113,9 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp TAB         &none         &none    &kp UP_ARROW         &none         &none      &none      &mt TILDE GRAVE  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &none  &none  &bspc_del
-&kp LCTRL    &bt BT_CLR      &kp LEFT        &kp DOWN     &kp RIGHT        &trans      &none  &mt COLON SEMICOLON          &mt RIGHT_BRACKET LEFT_BRACKET  &none  &none      &none
- &kp LGUI  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &none                &none              &mt GREATER_THAN LESS_THAN  &none  &none      &none
+  &kp TAB  &out OUT_TOG         &none    &kp UP_ARROW         &none         &none      &none      &mt TILDE GRAVE  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &none  &none  &trans
+&kp LCTRL    &bt BT_CLR      &kp LEFT        &kp DOWN     &kp RIGHT        &trans      &none  &mt COLON SEMICOLON          &mt RIGHT_BRACKET LEFT_BRACKET  &none  &none   &none
+ &kp LGUI  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &none                &none              &mt GREATER_THAN LESS_THAN  &none  &none   &none
                                        &kp LEFT_SHIFT        &trans     &kp SPACE    &kp RET               &trans                                &kp RALT
             >;
 
