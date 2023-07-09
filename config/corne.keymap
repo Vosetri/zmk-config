@@ -11,7 +11,7 @@
 // Custom Behaviors
 
 / {
-    behaviors {
+    /behaviors {
         bspc_del: backspace_delete {
             compatible = "zmk,behavior-mod-morph";
             label = "BACKSPACE_DELETE";
@@ -22,6 +22,7 @@
 
             mods = <(MOD_LALT)>;
         };
+        
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MODS";
@@ -33,8 +34,7 @@
                 <&kp>,
                 <&kp>;
 
-            ;
-        };
+            };
     };
 };
 
