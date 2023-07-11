@@ -24,45 +24,56 @@
                 <&kp>,
                 <&kp>;
         };
+        hm_mo: homerow_momentary_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MOMENTARY_LAYER";
+            #binding-cells = <2>;
+            tapping-term-ms = <600>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings =
+                <&mo>,
+                <&kp>;
+        };
     };
 };
 
 // Combos
-
-/ {
-    combos {
-        compatible = "zmk,combos";
-
-        combo_CMD_UP {
-            timeout-ms = <300>;
-            key-positions = <22 3>;
-            bindings = <&kp LG(UP)>;
-            layers = <0>;
-        };
-
-        combo_CMD_RIGHT {
-            timeout-ms = <300>;
-            key-positions = <22 16>;
-            bindings = <&kp LG(RIGHT)>;
-            layers = <0>;
-        };
-
-        combo_CMD_LEFT {
-            timeout-ms = <300>;
-            key-positions = <22 14>;
-            bindings = <&kp LG(LEFT)>;
-            layers = <0>;
-        };
-
-        combo_CMD_DOWN {
-            timeout-ms = <300>;
-            key-positions = <22 15>;
-            bindings = <&kp LG(DOWN)>;
-            layers = <0>;
-        };
-    };
-};
-
+/*
+*   / {
+*      combos {
+*          compatible = "zmk,combos";
+*  
+*          combo_CMD_UP {
+*              timeout-ms = <300>;
+*              key-positions = <22 3>;
+*              bindings = <&kp LG(UP)>;
+*              layers = <0>;
+*          };
+*  
+*          combo_CMD_RIGHT {
+*              timeout-ms = <300>;
+*              key-positions = <22 16>;
+*              bindings = <&kp LG(RIGHT)>;
+*              layers = <0>;
+*          };
+*  
+*          combo_CMD_LEFT {
+*              timeout-ms = <300>;
+*              key-positions = <22 14>;
+*              bindings = <&kp LG(LEFT)>;
+*              layers = <0>;
+*          };
+*  
+*          combo_CMD_DOWN {
+*              timeout-ms = <300>;
+*              key-positions = <22 15>;
+*              bindings = <&kp LG(DOWN)>;
+*              layers = <0>;
+*          };
+*      };
+*  };
+*/
 // Keymap
 
 / {
@@ -78,7 +89,7 @@
 
             bindings = <
   &kp TAB  &kp Q  &kp W           &kp E  &kp R      &kp T      &kp Y  &kp U      &kp I    &kp O               &kp P  &kp BACKSPACE
-&kp LCTRL  &kp A  &kp S           &kp D  &kp F      &kp G      &kp H  &kp J      &kp K    &kp L  &hm LGUI SEMICOLON        &kp SQT
+&kp LCTRL  &kp A  &kp S           &kp D  &kp F      &kp G      &kp H  &kp J      &kp K    &kp L  &hm_mo 2 SEMICOLON        &kp SQT
  &kp LGUI  &kp Z  &kp X           &kp C  &kp V      &kp B      &kp N  &kp M  &kp COMMA  &kp DOT            &kp FSLH        &kp ESC
                          &kp LEFT_SHIFT  &mo 1  &kp SPACE    &kp RET  &mo 2   &kp RALT
             >;
@@ -94,10 +105,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp TAB  &none     &none  &kp UP_ARROW      &none      &none       &kp SLASH    &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8              &kp N9   &kp MINUS  &kp DELETE
-&kp LCTRL  &none  &kp LEFT      &kp DOWN  &kp RIGHT      &none    &kp ASTERISK       &mt DOLLAR NUMBER_4   &mt PERCENT NUMBER_5  &mt CARET NUMBER_6   &kp EQUAL       &none
- &kp LGUI  &none     &none         &none      &none      &none          &kp N0  &mt EXCLAMATION NUMBER_1   &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3  &kp PERIOD       &none
-                               &kp LSHFT     &trans  &kp SPACE         &kp RET                    &trans               &kp RALT
+  &kp TAB  &none     &none  &kp UP_ARROW      &none      &none       &kp SLASH    &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8              &kp N9   &kp MINUS          &kp DELETE
+&kp LCTRL  &none  &kp LEFT      &kp DOWN  &kp RIGHT      &none    &kp ASTERISK       &mt DOLLAR NUMBER_4   &mt PERCENT NUMBER_5  &mt CARET NUMBER_6   &kp EQUAL  &mt PIPE BACKSLASH
+ &kp LGUI  &none     &none         &none      &none      &none          &kp N0  &mt EXCLAMATION NUMBER_1   &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3  &kp PERIOD               &none
+                               &kp LSHFT     &trans  &kp SPACE         &kp RET                 &kp LCTRL               &kp RALT
             >;
 
             label = "NUM";
@@ -111,10 +122,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp TAB  &out OUT_TOG         &none    &kp UP_ARROW         &none         &none      &none      &mt TILDE GRAVE  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &none  &none  &trans
-&kp LCTRL    &bt BT_CLR      &kp LEFT        &kp DOWN     &kp RIGHT        &trans      &none  &mt COLON SEMICOLON          &mt RIGHT_BRACKET LEFT_BRACKET  &none  &none   &none
- &kp LGUI  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &none                &none              &mt GREATER_THAN LESS_THAN  &none  &none   &none
-                                       &kp LEFT_SHIFT        &trans     &kp SPACE    &kp RET               &trans                                &kp RALT
+  &kp TAB  &out OUT_TOG         &none    &kp UP_ARROW         &none         &none    &mt TILDE GRAVE  &mt RIGHT_BRACKET LEFT_BRACKET  &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &mt GREATER_THAN LESS_THAN   &none  &trans
+&kp LCTRL    &bt BT_CLR      &kp LEFT        &kp DOWN     &kp RIGHT        &trans              &none                  &kp LEFT_SHIFT                               &kp LCTRL                    &kp LGUI  &trans   &none
+ &kp LGUI  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4              &none                           &none                                   &none                       &none   &none   &none
+                                       &kp LEFT_SHIFT        &trans     &kp SPACE            &kp RET                          &trans                                &kp RALT
             >;
 
             label = "SYS";
