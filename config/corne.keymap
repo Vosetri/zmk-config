@@ -22,6 +22,7 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+
         hm_mo: homerow_momentary_layer {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_MOMENTARY_LAYER";
@@ -101,10 +102,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &none  &none     &kp UP_ARROW  &none      &none        &kp SLASH     &mt AMPERSAND NUMBER_7    &mt ASTERISK NUMBER_8  &kp N9              &kp MINUS   &kp DELETE
-&kp LCTRL  &none  &kp LEFT  &kp DOWN      &kp RIGHT  &none        &kp ASTERISK  &mt DOLLAR NUMBER_4       &mt PERCENT NUMBER_5   &mt CARET NUMBER_6  &kp EQUAL   &mt PIPE BACKSLASH
-&kp LGUI   &mo 3  &none     &none         &none      &none        &kp N0        &mt EXCLAMATION NUMBER_1  &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3   &kp PERIOD  &none
-                            &kp LSHFT     &trans     &kp SPACE    &kp RET       &kp LCTRL                 &kp RALT
+&kp TAB    &none  &none     &kp UP_ARROW  &none      &studio_unlock    &kp SLASH     &mt AMPERSAND NUMBER_7    &mt ASTERISK NUMBER_8  &kp N9              &kp MINUS   &kp DELETE
+&kp LCTRL  &none  &kp LEFT  &kp DOWN      &kp RIGHT  &none             &kp ASTERISK  &mt DOLLAR NUMBER_4       &mt PERCENT NUMBER_5   &mt CARET NUMBER_6  &kp EQUAL   &mt PIPE BACKSLASH
+&kp LGUI   &mo 3  &none     &none         &none      &none             &kp N0        &mt EXCLAMATION NUMBER_1  &mt AT_SIGN NUMBER_2   &mt HASH NUMBER_3   &kp PERIOD  &none
+                            &kp LSHFT     &trans     &kp SPACE         &kp RET       &kp LCTRL                 &kp RALT
             >;
 
             label = "NUM";
